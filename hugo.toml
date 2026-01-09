@@ -4,7 +4,8 @@ title = "AI Infra Engineering"
 theme = "PaperMod"
 
 # Pagination
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 # Enable emoji support
 enableEmoji = true
@@ -16,7 +17,8 @@ buildFuture = false
 buildExpired = false
 
 # Minify output
-minify = true
+[minify]
+  minifyOutput = true
 
 [params]
   # Site description
