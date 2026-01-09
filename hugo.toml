@@ -58,7 +58,7 @@ buildExpired = false
     enabled = true
     title = "Marius Palimariu"
     subtitle = "AI Platform Architect | HPC & NVIDIA AI Infrastructure | Cloud & DevOps | Building intelligent systems at scale"
-    imageUrl = ""
+    imageUrl = "/images/profile-logo.png"
     imageWidth = 120
     imageHeight = 120
 
@@ -102,6 +102,14 @@ buildExpired = false
     threshold = 0.4
     minMatchCharLength = 0
     keys = ["title", "permalink", "summary", "content"]
+
+  [params.assets]
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+    safari_pinned_tab = "/favicon.svg"
+    theme_color = "#0ea5e9"
 
 # Main menu
 [menu]
