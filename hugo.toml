@@ -1,0 +1,149 @@
+baseURL = "https://aiinfra.engineering/"
+languageCode = "en-us"
+title = "AI Infra Engineering"
+theme = "PaperMod"
+
+# Pagination
+paginate = 10
+
+# Enable emoji support
+enableEmoji = true
+
+# Build settings
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# Minify output
+minify = true
+
+[params]
+  # Site description
+  description = "Exploring AI infrastructure, HPC, NVIDIA AI Infrastructure and Operations, InfiniBand networking, Slurm, Lustre, and platform engineering"
+  author = "Marius Palimariu"
+  
+  # Default theme (dark/light/auto)
+  defaultTheme = "auto"
+  
+  # Show reading time
+  ShowReadingTime = true
+  
+  # Show share buttons
+  ShowShareButtons = true
+  
+  # Show post navigation
+  ShowPostNavLinks = true
+  
+  # Show breadcrumbs
+  ShowBreadCrumbs = true
+  
+  # Show code copy buttons
+  ShowCodeCopyButtons = true
+  
+  # Show table of contents
+  ShowToc = true
+  TocOpen = false
+  
+  # Show word count
+  ShowWordCount = false
+  
+  # Comments (disabled by default, can enable later)
+  comments = false
+
+  # Home page profile
+  [params.profileMode]
+    enabled = true
+    title = "Marius Palimariu"
+    subtitle = "AI Platform Architect | HPC & NVIDIA AI Infrastructure | Cloud & DevOps | Building intelligent systems at scale"
+    imageUrl = ""
+    imageWidth = 120
+    imageHeight = 120
+
+    [[params.profileMode.buttons]]
+      name = "Blog"
+      url = "/posts/"
+    
+    [[params.profileMode.buttons]]
+      name = "About"
+      url = "/about/"
+
+  # Social icons
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/palimariumarius/"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/palimarium"
+
+  [[params.socialIcons]]
+    name = "x"
+    url = "https://x.com/palimarium"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  # Cover image settings
+  [params.cover]
+    hidden = false
+    hiddenInList = false
+    hiddenInSingle = false
+
+  # Search
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+# Main menu
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Blog"
+    url = "/posts/"
+    weight = 10
+  
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+  
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 30
+  
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+# Outputs for search functionality
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Taxonomies
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+# Markup settings
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false
+    style = "monokai"
+  
+  [markup.goldmark.renderer]
+    unsafe = true
