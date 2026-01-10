@@ -1,5 +1,4 @@
-# Deploying NVIDIA Base Command Manager on OpenShift Virtualization: A Complete Guide
-
+# Deploying NVIDIA Base Command Manager 11 on OpenShift Virtualization
 ## Introduction
 
 NVIDIA Base Command Manager (BCM) is a powerful cluster management platform designed for high-performance computing and AI workloads. While traditionally deployed on bare metal or conventional VMs, this guide demonstrates how to successfully deploy BCM v11.0 on OpenShift Virtualization (formerly KubeVirt), enabling cloud-native HPC infrastructure.
@@ -14,10 +13,11 @@ This deployment pattern is particularly valuable for organizations looking to:
 
 Before starting, ensure you have:
 
-- **OpenShift Cluster**: Single-node or multi-node OpenShift 4.14+ cluster
+- **OpenShift Cluster**: Single-node or multi-node OpenShift 4.19+ cluster
 - **Storage**: LVMS (Logical Volume Manager Storage) or ODF for persistent volumes
 - **Resources**: At least 32GB RAM and 500GB storage for the BCM VM
-- **BCM ISO**: Downloaded from NVIDIA Licensing Portal (bcm-11.0-ubuntu2404.iso)
+- **BCM License**: You can [request a free license](https://enterpriseproductregistration.nvidia.com/?LicType=Eval&ProductFamily=BCM&ncid=pa-srch-goog-310931&ncid=em-anno-833732), for up to eight accelerators per system—NVIDIA GPU-accelerated or other—in any cluster size
+- **BCM ISO**: Downloaded from [NVIDIA BCM ISO Portal](https://customer.brightcomputing.com/download-iso) (bcm-11.0-ubuntu2404.iso)
 - **CLI Tools**: 
   - `oc` (OpenShift CLI)
   - `virtctl` (KubeVirt CLI - installable via Homebrew on macOS)
@@ -431,7 +431,6 @@ Follow the BCM installer prompts:
 After installation completes:
 - VM will reboot automatically
 - Login credentials: Use the admin password you set during installation
-- Default OS user: `ubuntu/ubuntu` (if not customized)
 
 ## Step 7: Configure Network Access
 
@@ -641,7 +640,13 @@ oc get route bcm-web -n nvidia-bcm -o jsonpath='{.spec.host}'
 Access in your browser:
 - **Landing Page**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/`
 - **Base View**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/base-view/`
+
+![BCM Base View](static/images/bcm-base-view.png)
+
 - **User Portal**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/userportal/`
+
+![BCM User Portal](static/images/bcm-user-portal.png)
+
 - **API Docs**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/api/`
 
 ### 10.2 Login
@@ -917,14 +922,12 @@ However, this deployment pattern offers significant advantages:
 - **Better isolation**: Namespace-based security and multi-tenancy
 - **GitOps ready**: Infrastructure-as-code for BCM deployment
 
-The Apache reverse proxy configuration is not a workaround but rather the **recommended pattern** for containerizing legacy applications with custom ports. This same approach is used for Jenkins, Grafana, and many other enterprise applications in Kubernetes environments.
 
 ## Additional Resources
 
 - **NVIDIA Base Command Manager Documentation**: https://docs.nvidia.com/base-command-manager/
-- **OpenShift Virtualization Documentation**: https://docs.openshift.com/container-platform/4.14/virt/about-virt.html
-- **KubeVirt Official Site**: https://kubevirt.io/
-- **LVMS Documentation**: https://docs.openshift.com/container-platform/4.14/storage/persistent_storage/persistent_storage_local/persistent-storage-using-lvms.html
+- **OpenShift Virtualization Documentation**: https://docs.openshift.com/container-platform/4.20/virt/about-virt.html
+- **LVMS Documentation**: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/storage/persistent-storage-using-local-storage#persistent-storage-using-lvms
 
 ## About This Guide
 
@@ -934,8 +937,7 @@ If you found this guide helpful or have suggestions for improvement, please shar
 
 ---
 
-**Author**: Community Contribution  
+**Author**: Marius Palimariu  
 **Date**: December 2025  
 **BCM Version**: 11.0 (Ubuntu 24.04 base)  
-**OpenShift Version**: 4.14+  
-**License**: CC BY-SA 4.0
+**OpenShift Version**: 4.20
