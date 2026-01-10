@@ -26,7 +26,7 @@ Before starting, ensure you have:
 
 The final architecture consists of:
 
-```mermaid
+<div class="mermaid">
 graph TD
     User[External User/Browser]
     Route[OpenShift Route<br/>bcm-web-nvidia-bcm.apps.cluster.local<br/>Port: 443 HTTPS]
@@ -62,7 +62,7 @@ graph TD
     style API fill:#ffeb3b
     style JSON fill:#ffeb3b
     style WS fill:#ffeb3b
-```
+</div> 
 
 ### Key Components
 
@@ -166,7 +166,7 @@ BCM requires two network interfaces:
 - **External network**: For web UI and external access
 - **Internal network**: For BCM ↔ Compute node communication
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph OpenShift Pod Network
         Route[OpenShift Route]
@@ -208,7 +208,7 @@ graph LR
     style Bridge fill:#00bcd4
     style Compute1 fill:#ffeb3b
     style Compute2 fill:#ffeb3b
-```
+</div>
 
 ### 3.1 Create Internal Network
 
@@ -449,7 +449,7 @@ sudo ss -tlnp | grep 8081
 
 Configure Apache to proxy BCM services from port 80 to 8081:
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant User as Browser
     participant Route as OpenShift Route<br/>(HTTPS:443)
@@ -470,7 +470,7 @@ sequenceDiagram
     Route-->>User: HTTPS Response
     
     Note over User,BCM: WebSocket connections use /ws endpoint<br/>with extended timeout (600s)
-```
+</div>
 
 **Inside the VM**, create Apache proxy configuration:
 
@@ -641,11 +641,11 @@ Access in your browser:
 - **Landing Page**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/`
 - **Base View**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/base-view/`
 
-![BCM Base View](static/images/bcm-base-view.png)
+![BCM Base View](/images/bcm-base-view.png)
 
 - **User Portal**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/userportal/`
 
-![BCM User Portal](static/images/bcm-user-portal.png)
+![BCM User Portal](/images/bcm-user-portal.png)
 
 - **API Docs**: `https://bcm-web-nvidia-bcm.apps.<cluster-domain>/api/`
 
