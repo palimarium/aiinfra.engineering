@@ -157,3 +157,9 @@ buildExpired = false
   
   [markup.goldmark.renderer]
     unsafe = true
+
+
+# Google Analytics
+[services]
+  [services.googleAnalytics]
+    ID = "G-25QSDY1E8P"
