@@ -1,3 +1,13 @@
+---
+title: "Deploying NVIDIA Base Command Manager 11 on OpenShift Virtualization"
+date: 2025-12-15
+draft: false
+tags: ["NVIDIA", "BCM", "OpenShift", "Kubernetes", "HPC", "KubeVirt", "Virtualization", "GPU"]
+categories: ["Infrastructure"]
+summary: "A comprehensive guide to deploying NVIDIA Base Command Manager v11.0 on OpenShift Virtualization for cloud-native HPC infrastructure."
+ShowToc: true
+TocOpen: false
+---
 # Deploying NVIDIA Base Command Manager 11 on OpenShift Virtualization
 ## Introduction
 
@@ -26,7 +36,7 @@ Before starting, ensure you have:
 
 The final architecture consists of:
 
-```mermaid
+<div class="mermaid">
 graph TD
     User[External User/Browser]
     Route[OpenShift Route<br/>bcm-web-nvidia-bcm.apps.cluster.local<br/>Port: 443 HTTPS]
@@ -62,7 +72,7 @@ graph TD
     style API fill:#ffeb3b
     style JSON fill:#ffeb3b
     style WS fill:#ffeb3b
-```
+</div>
 
 ### Key Components
 
