@@ -26,7 +26,7 @@ Before starting, ensure you have:
 
 The final architecture consists of:
 
-<div class="mermaid">
+```mermaid
 graph TD
     User[External User/Browser]
     Route[OpenShift Route<br/>bcm-web-nvidia-bcm.apps.cluster.local<br/>Port: 443 HTTPS]
@@ -62,7 +62,7 @@ graph TD
     style API fill:#ffeb3b
     style JSON fill:#ffeb3b
     style WS fill:#ffeb3b
-</div> 
+```
 
 ### Key Components
 
