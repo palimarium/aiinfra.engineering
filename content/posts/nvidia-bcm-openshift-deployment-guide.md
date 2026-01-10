@@ -8,7 +8,6 @@ summary: "A comprehensive guide to deploying NVIDIA Base Command Manager v11.0 o
 ShowToc: false
 TocOpen: false
 ---
-# Deploying NVIDIA Base Command Manager 11 on OpenShift Virtualization
 ## Introduction
 
 NVIDIA Base Command Manager (BCM) is a powerful cluster management platform designed for high-performance computing and AI workloads. While traditionally deployed on bare metal or conventional VMs, this guide demonstrates how to successfully deploy BCM v11.0 on OpenShift Virtualization (formerly KubeVirt), enabling cloud-native HPC infrastructure.
