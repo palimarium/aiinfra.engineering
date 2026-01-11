@@ -155,8 +155,9 @@ buildExpired = false
     noClasses = false
     style = "monokai"
   
-  [markup.goldmark.renderer]
-    unsafe = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 
 # Google Analytics
