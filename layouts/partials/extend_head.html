@@ -10,16 +10,23 @@
 
 
 <!-- Mermaid Diagrams -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    const isDark = document.body.classList.contains('dark') || 
+                   (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     mermaid.initialize({
       startOnLoad: true,
-      theme: document.body.classList.contains('dark') ? 'dark' : 'default',
+      theme: isDark ? 'dark' : 'default',
       securityLevel: 'loose',
       flowchart: {
         useMaxWidth: true,
-        htmlLabels: true
+        htmlLabels: true,
+        curve: 'basis'
+      },
+      sequence: {
+        useMaxWidth: true,
+        wrap: true
       }
     });
   });
