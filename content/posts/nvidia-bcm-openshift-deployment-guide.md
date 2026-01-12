@@ -35,43 +35,9 @@ Before starting, ensure you have:
 
 The final architecture consists of:
 
-<div class="mermaid">
-graph TD
-    User[External User/Browser]
-    Route[OpenShift Route<br/>bcm-web-nvidia-bcm.apps.cluster.local<br/>Port: 443 HTTPS]
-    Service[Kubernetes Service<br/>bcm-service<br/>Port: 80]
-    VM[BCM Virtual Machine<br/>Ubuntu 24.04]
-    Apache[Apache HTTP Server<br/>Port: 80<br/>Reverse Proxy]
-    BCM[BCM Services<br/>Port: 8081 HTTPS<br/>IPv6 localhost]
-    BaseView[Base View<br/>/base-view/]
-    UserPortal[User Portal<br/>/userportal/]
-    API[CM API<br/>/api/]
-    JSON[JSON-RPC API<br/>/json]
-    WS[WebSocket<br/>/ws]
-    
-    User -->|HTTPS| Route
-    Route -->|HTTP| Service
-    Service -->|HTTP| VM
-    VM -->|Port 80| Apache
-    Apache -->|"HTTPS to IPv6:8081"| BCM
-    BCM --> BaseView
-    BCM --> UserPortal
-    BCM --> API
-    BCM --> JSON
-    BCM --> WS
-    
-    style User fill:#e1f5ff
-    style Route fill:#4caf50
-    style Service fill:#2196f3
-    style VM fill:#ff9800
-    style Apache fill:#9c27b0
-    style BCM fill:#f44336
-    style BaseView fill:#ffeb3b
-    style UserPortal fill:#ffeb3b
-    style API fill:#ffeb3b
-    style JSON fill:#ffeb3b
-    style WS fill:#ffeb3b
-</div>
+<a href="/images/bcm-architecture-overview.png" target="_blank">
+  <img src="/images/bcm-architecture-overview.png" alt="BCM Architecture Overview">
+</a>
 
 ### Key Components
 
