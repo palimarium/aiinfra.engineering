@@ -141,49 +141,9 @@ BCM requires two network interfaces:
 - **External network**: For web UI and external access
 - **Internal network**: For BCM ↔ Compute node communication
 
-<div class="mermaid">
-graph LR
-    subgraph OpenShift Pod Network
-        Route[OpenShift Route]
-        Service[Service]
-        PodNet[Pod Network<br/>10.128.0.0/16<br/>MTU: 1400]
-    end
-    
-    subgraph BCM Head Node VM
-        ENP1[enp1s0<br/>External Interface<br/>Masquerade]
-        ENP2[enp2s0<br/>Internal Interface<br/>192.168.100.10/24<br/>Bridge]
-        Apache[Apache Proxy]
-        BCM[BCM Services]
-    end
-    
-    subgraph BCM Internal Network
-        Bridge[bcm-br0<br/>192.168.100.0/24<br/>MTU: 1500]
-        Compute1[Compute Node 1<br/>192.168.100.50]
-        Compute2[Compute Node 2<br/>192.168.100.51]
-    end
-    
-    Route --> Service
-    Service --> PodNet
-    PodNet --> ENP1
-    ENP1 --> Apache
-    Apache --> BCM
-    
-    ENP2 --> Bridge
-    Bridge --> Compute1
-    Bridge --> Compute2
-    BCM -.Cluster Management.-> ENP2
-    
-    style Route fill:#4caf50
-    style Service fill:#2196f3
-    style PodNet fill:#e1f5ff
-    style ENP1 fill:#ff9800
-    style ENP2 fill:#ff9800
-    style Apache fill:#9c27b0
-    style BCM fill:#f44336
-    style Bridge fill:#00bcd4
-    style Compute1 fill:#ffeb3b
-    style Compute2 fill:#ffeb3b
-</div>
+<a href="/images/bcm-network-setup.png" target="_blank">
+  <img src="/images/bcm-network-setup.png" alt="BCM Network Configuration">
+</a>
 
 ### 3.1 Create Internal Network
 
@@ -424,28 +384,9 @@ sudo ss -tlnp | grep 8081
 
 Configure Apache to proxy BCM services from port 80 to 8081:
 
-<div class="mermaid">
-sequenceDiagram
-    participant User as Browser
-    participant Route as OpenShift Route<br/>(HTTPS:443)
-    participant Service as K8s Service<br/>(HTTP:80)
-    participant Apache as Apache Proxy<br/>(HTTP:80)
-    participant BCM as BCM CMDaemon<br/>(HTTPS:8081 IPv6)
-    
-    User->>Route: GET /base-view/
-    Note over Route: TLS Termination
-    Route->>Service: HTTP to 10.128.0.220:80
-    Service->>Apache: Forward to VM:80
-    Note over Apache: Proxy Translation<br/>Port: 80 to 8081<br/>Protocol: HTTP to HTTPS<br/>IP: IPv4 to IPv6
-    Apache->>BCM: HTTPS to IPv6:8081/base-view/
-    BCM-->>Apache: Response
-    Apache-->>Service: Response
-    Service-->>Route: Response
-    Note over Route: Add TLS
-    Route-->>User: HTTPS Response
-    
-    Note over User,BCM: WebSocket connections use /ws endpoint<br/>with extended timeout (600s)
-</div>
+<a href="/images/bcm-proxy-sequence-diagram.png" target="_blank">
+  <img src="/images/bcm-proxy-sequence-diagram.png" alt="BCM Proxy sequence diagram">
+</a>
 
 **Inside the VM**, create Apache proxy configuration:
 
